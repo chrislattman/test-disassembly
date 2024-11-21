@@ -6,42 +6,42 @@ import (
 	"strconv"
 )
 
-type Circle struct {
+type circle struct {
 	x, y int
 	radius float64
 }
 
-func (circle Circle) area() float64 {
-	return math.Pi * math.Pow(circle.radius, 2)
+func (circ circle) area() float64 {
+	return math.Pi * math.Pow(circ.radius, 2)
 }
 
-func (circle Circle) circumference() float64 {
-	return 2 * math.Pi * circle.radius
+func (circ circle) circumference() float64 {
+	return 2 * math.Pi * circ.radius
 }
 
-func (circle Circle) diameter() float64 {
-	return 2 * circle.radius
+func (circ circle) diameter() float64 {
+	return 2 * circ.radius
 }
 
-func (circle *Circle) changeRadius(newRadius float64) {
-	circle.radius = newRadius
+func (circ *circle) changeRadius(newRadius float64) {
+	circ.radius = newRadius
 }
 
-func part1() {
-	var circle Circle
+func Part1() {
+	var circ circle
 
 	fmt.Print("Enter radius: ")
-	fmt.Scanf("%f", &circle.radius)
-	circle.x = 0
-	circle.y = 1
+	fmt.Scanf("%f", &circ.radius)
+	circ.x = 0
+	circ.y = 1
 
-	fmt.Printf("Area = %v, Circumference = %v, Diameter = %v\n", circle.area(), circle.circumference(), circle.diameter())
+	fmt.Printf("Area = %v, Circumference = %v, Diameter = %v\n", circ.area(), circ.circumference(), circ.diameter())
 
-	circle.changeRadius(4)
-	fmt.Printf("New diameter = %v\n", circle.diameter())
+	circ.changeRadius(4)
+	fmt.Printf("New diameter = %v\n", circ.diameter())
 }
 
-func part2() {
+func Part2() {
 	str := "Hello world!"
 	number := "307"
 
@@ -60,6 +60,6 @@ func main() {
 		heapBuf[i] = (i + 12) % 31
 	}
 
-	part1()
-	part2()
+	Part1()
+	Part2()
 }

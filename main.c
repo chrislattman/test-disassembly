@@ -8,19 +8,19 @@ typedef struct Circle {
     double radius;
 } Circle;
 
-double area(Circle circle) {
+static double area(Circle circle) {
     return M_PI * pow(circle.radius, 2);
 }
 
-double circumference(Circle circle) {
+static double circumference(Circle circle) {
     return 2 * M_PI * circle.radius;
 }
 
-double diameter(Circle circle) {
+static double diameter(Circle circle) {
     return 2 * circle.radius;
 }
 
-void change_radius(Circle* circle, double new_radius) {
+static void change_radius(Circle* circle, double new_radius) {
     circle->radius = new_radius;
 }
 
