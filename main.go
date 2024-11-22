@@ -27,6 +27,11 @@ func (circ *circle) changeRadius(newRadius float64) {
 	circ.radius = newRadius
 }
 
+func FourArgFunc(arg1 int, arg2 int, arg3 int, arg4 *circle) {
+	result := arg1 + arg2 + arg3 + arg4.x + arg4.y
+	fmt.Println("Result =", result)
+}
+
 func Part1() {
 	var circ circle
 
@@ -39,6 +44,8 @@ func Part1() {
 
 	circ.changeRadius(4)
 	fmt.Printf("New diameter = %v\n", circ.diameter())
+
+	FourArgFunc(5, 3, 2, &circ)
 }
 
 func Part2() {

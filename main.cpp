@@ -32,6 +32,11 @@ public:
     }
 };
 
+void fourargfunc(int arg1, int arg2, int arg3, Circle* arg4) {
+    int result = arg1 + arg2 + arg3 + arg4->x + arg4->y;
+    cout << "Result = " << result << endl;
+}
+
 void part1(void) {
     double radius;
 
@@ -45,6 +50,8 @@ void part1(void) {
 
     circle.change_radius(4);
     cout << "New diameter = " << circle.diameter() << endl;
+
+    fourargfunc(5, 3, 2, &circle);
 }
 
 void part2(void) {

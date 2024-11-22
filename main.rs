@@ -24,6 +24,11 @@ impl Circle {
     }
 }
 
+fn fourargfunc(arg1: i32, arg2: i32, arg3: i32, arg4: &mut Circle) {
+    let result = arg1 + arg2 + arg3 + arg4.x + arg4.y;
+    println!("Result = {}", result);
+}
+
 fn part1() {
     print!("Enter radius: ");
     io::stdout().flush().unwrap();
@@ -35,6 +40,8 @@ fn part1() {
 
     circle.change_radius(4.0);
     println!("New diameter = {}", circle.diameter());
+
+    fourargfunc(5, 3, 2, &mut circle);
 }
 
 fn part2() {

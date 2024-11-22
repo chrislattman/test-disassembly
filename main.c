@@ -24,6 +24,11 @@ static void change_radius(Circle* circle, double new_radius) {
     circle->radius = new_radius;
 }
 
+void fourargfunc(int arg1, int arg2, int arg3, Circle* arg4) {
+    int result = arg1 + arg2 + arg3 + arg4->x + arg4->y;
+    printf("Result = %d\n", result);
+}
+
 void part1(void) {
     Circle circle;
 
@@ -36,6 +41,8 @@ void part1(void) {
 
     change_radius(&circle, 4);
     printf("New diameter = %f\n", diameter(circle));
+
+    fourargfunc(5, 3, 2, &circle);
 }
 
 void part2(void) {

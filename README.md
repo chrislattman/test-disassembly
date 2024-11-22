@@ -18,6 +18,13 @@ main.rs depends on:
 - libc.so
 - ld-linux-x86-64.so
 
+To compile statically:
+- C/C++: pass -static to gcc/g++
+- Go: already statically compiled
+- Rust: pass -C target-feature=+crt-static to rustc (or in RUSTFLAGS environment variable before cargo)
+
+Use the `strip` command to remove symbol table information (makes the binary smaller but less debuggable)
+
 To make Circle and its methods public:
 - In C: place struct Circle and function signatures in main.h header file, and remove static keyword from function signatures
 - In C++: place class Circle in main.hpp header file
