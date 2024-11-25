@@ -1,13 +1,17 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
+	"os"
+	"os/exec"
 	"strconv"
+	"time"
 )
 
 type circle struct {
-	x, y int
+	x, y   int
 	radius float64
 }
 
@@ -59,6 +63,28 @@ func Part2() {
 	fmt.Println(str != number)
 }
 
+func Part3() {
+	err := exec.Command("date").Run()
+	if err == nil {
+		fmt.Println("Result of date command = 0")
+	} else {
+		if exitErr, ok := err.(*exec.ExitError); ok {
+			fmt.Println("Result of date command =", exitErr.ExitCode())
+		}
+	}
+
+	currentTime := time.Now().Unix()
+	fmt.Println("Number of seconds since Jan 1, 1970 =", currentTime)
+}
+
+func Part4() {
+	fp, _ := os.Open("sample.txt")
+	reader := bufio.NewReader(fp)
+	line, _ := reader.ReadString('\n')
+	fp.Close()
+	fmt.Print(line)
+}
+
 func main() {
 	var stackBuf [10]int
 	heapBuf := make([]int, 10)
@@ -69,4 +95,6 @@ func main() {
 
 	Part1()
 	Part2()
+	Part3()
+	Part4()
 }

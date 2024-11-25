@@ -1,4 +1,10 @@
-use std::{f64::consts::PI, io::{self, Write}};
+use std::{
+    f64::consts::PI,
+    fs::File,
+    io::{self, prelude::*, BufReader, Write},
+    process::Command,
+    time::{SystemTime, UNIX_EPOCH},
+};
 
 struct Circle {
     x: i32,
@@ -34,9 +40,18 @@ fn part1() {
     io::stdout().flush().unwrap();
     let mut buffer = String::new();
     io::stdin().read_line(&mut buffer).unwrap();
-    let mut circle = Circle{ x: 0, y: 1, radius: buffer.trim().parse::<f64>().unwrap() };
+    let mut circle = Circle {
+        x: 0,
+        y: 1,
+        radius: buffer.trim().parse::<f64>().unwrap(),
+    };
 
-    println!("Area = {}, Circumference = {}, Diameter = {}", circle.area(), circle.circumference(), circle.diameter());
+    println!(
+        "Area = {}, Circumference = {}, Diameter = {}",
+        circle.area(),
+        circle.circumference(),
+        circle.diameter()
+    );
 
     circle.change_radius(4.0);
     println!("New diameter = {}", circle.diameter());
@@ -54,6 +69,25 @@ fn part2() {
     println!("{}", s != number);
 }
 
+fn part3() {
+    let status = Command::new("date").status().unwrap().code().unwrap();
+    println!("Result of date command = {}", status);
+
+    let current_time = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap()
+        .as_secs();
+    println!("Number of seconds since Jan 1, 1970 = {}", current_time);
+}
+
+fn part4() {
+    let fp = File::open("sample.txt").unwrap();
+    let mut reader = BufReader::new(fp);
+    let mut line = String::new();
+    reader.read_line(&mut line).unwrap();
+    print!("{}", line);
+}
+
 fn main() {
     let mut stack_buf = [0; 10];
     let mut heap_buf = vec![0; 10];
@@ -64,4 +98,6 @@ fn main() {
 
     part1();
     part2();
+    part3();
+    part4();
 }

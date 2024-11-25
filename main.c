@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct Circle {
     int x, y;
@@ -55,6 +56,23 @@ void part2(void) {
     printf("%s\n", strcmp(str, number) != 0 ? "true" : "false");
 }
 
+void part3(void) {
+    int status = system("date");
+    printf("Result of date command = %d\n", status);
+
+    time_t current_time = time(NULL);
+    printf("Number of seconds since Jan 1, 1970 = %ld\n", current_time);
+}
+
+void part4(void) {
+    char line[32] = {0};
+
+    FILE *fp = fopen("sample.txt", "r");
+    fread(line, sizeof(char), 19, fp);
+    fclose(fp);
+    printf("%s\n", line);
+}
+
 int main(void) {
     int stack_buf[10];
     int* heap_buf = malloc(10 * sizeof(int));
@@ -66,6 +84,8 @@ int main(void) {
 
     part1();
     part2();
+    part3();
+    part4();
 
     return 0;
 }
