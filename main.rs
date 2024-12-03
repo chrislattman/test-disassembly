@@ -46,6 +46,14 @@ fn part1() {
         radius: buffer.trim().parse::<f64>().unwrap(),
     };
 
+    if circle.x < 0 {
+        println!("Your circle has a x-coordinate less than 0");
+    } else if circle.x == 0 {
+        println!("Your circle has a x-coordinate equal to 0");
+    } else {
+        println!("Your circle has a x-coordinate greater than 0");
+    }
+
     println!(
         "Area = {}, Circumference = {}, Diameter = {}",
         circle.area(),
@@ -88,6 +96,24 @@ fn part4() {
     print!("{}", line);
 }
 
+fn part5() {
+    let mut x = 5;
+    loop {
+        x = (x * 5) % 7;
+        if x == 1 {
+            break;
+        }
+    }
+}
+
+fn part6(arg: i32) {
+    match arg % 2 {
+        0 => println!("arg is even"),
+        1 => println!("arg is odd"),
+        _ => println!("this should never be called (numbers are even or odd)")
+    }
+}
+
 fn main() {
     let mut stack_buf = [0; 10];
     let mut heap_buf = vec![0; 10];
@@ -100,4 +126,6 @@ fn main() {
     part2();
     part3();
     part4();
+    part5();
+    part6(13);
 }

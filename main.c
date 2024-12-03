@@ -38,6 +38,14 @@ void part1(void) {
     circle.x = 0;
     circle.y = 1;
 
+    if (circle.x < 0) {
+        printf("Your circle has a x-coordinate less than 0\n");
+    } else if (circle.x == 0) {
+        printf("Your circle has a x-coordinate equal to 0\n");
+    } else {
+        printf("Your circle has a x-coordinate greater than 0\n");
+    }
+
     printf("Area = %lf, Circumference = %lf, Diameter = %lf\n", area(circle), circumference(circle), diameter(circle));
 
     change_radius(&circle, 4);
@@ -73,6 +81,31 @@ void part4(void) {
     printf("%s\n", line);
 }
 
+void part5(void) {
+    int x = 5;
+    while (1) {
+        x = (x * 5) % 7;
+        if (x == 1) {
+            break;
+        }
+    }
+}
+
+void part6(int arg) {
+    switch (arg % 2)
+    {
+    case 0:
+        printf("arg is even\n");
+        break;
+    case 1:
+        printf("arg is odd\n");
+        break;
+    default:
+        printf("this should never be called (numbers are even or odd)\n");
+        break;
+    }
+}
+
 int main(void) {
     int stack_buf[10];
     int* heap_buf = malloc(10 * sizeof(int));
@@ -86,6 +119,8 @@ int main(void) {
     part2();
     part3();
     part4();
+    part5();
+    part6(13);
 
     return 0;
 }

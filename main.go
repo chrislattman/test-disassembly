@@ -44,6 +44,14 @@ func Part1() {
 	circ.x = 0
 	circ.y = 1
 
+	if circ.x < 0 {
+        fmt.Println("Your circle has a x-coordinate less than 0")
+    } else if circ.radius == 0 {
+        fmt.Println("Your circle has a x-coordinate equal to 0")
+    } else {
+        fmt.Println("Your circle has a x-coordinate greater than 0")
+    }
+
 	fmt.Printf("Area = %v, Circumference = %v, Diameter = %v\n", circ.area(), circ.circumference(), circ.diameter())
 
 	circ.changeRadius(4)
@@ -85,6 +93,27 @@ func Part4() {
 	fmt.Print(line)
 }
 
+func Part5() {
+	x := 5
+    for true {
+        x = (x * 5) % 7
+        if (x == 1) {
+            break
+        }
+    }
+}
+
+func Part6(arg int) {
+	switch arg % 2 {
+	case 0:
+		fmt.Println("arg is even")
+	case 1:
+		fmt.Println("arg is odd")
+	default:
+		fmt.Println("this should never be called (numbers are even or odd)")
+	}
+}
+
 func main() {
 	var stackBuf [10]int
 	heapBuf := make([]int, 10)
@@ -97,4 +126,6 @@ func main() {
 	Part2()
 	Part3()
 	Part4()
+	Part5()
+	Part6(13)
 }

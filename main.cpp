@@ -49,6 +49,14 @@ void part1(void) {
     circle.x = 0;
     circle.y = 1;
 
+    if (circle.x < 0) {
+        cout << "Your circle has a x-coordinate less than 0" << endl;
+    } else if (circle.x == 0) {
+        cout << "Your circle has a x-coordinate equal to 0" << endl;
+    } else {
+        cout << "Your circle has a x-coordinate greater than 0" << endl;
+    }
+
     cout << "Area = " << circle.area() << ", Circumference = " << circle.circumference() << ", Diameter = " << circle.diameter() << endl;
 
     circle.change_radius(4);
@@ -87,6 +95,31 @@ void part4(void) {
     cout << line << endl;
 }
 
+void part5(void) {
+    int x = 5;
+    while (1) {
+        x = (x * 5) % 7;
+        if (x == 1) {
+            break;
+        }
+    }
+}
+
+void part6(int arg) {
+    switch (arg % 2)
+    {
+    case 0:
+        cout << "arg is even" << endl;
+        break;
+    case 1:
+        cout << "arg is odd" << endl;
+        break;
+    default:
+        cout << "this should never be called (numbers are even or odd)" << endl;
+        break;
+    }
+}
+
 int main(void) {
     int stack_buf[10];
     int* heap_buf = new int[10];
@@ -100,6 +133,8 @@ int main(void) {
     part2();
     part3();
     part4();
+    part5();
+    part6(13);
 
     return 0;
 }
