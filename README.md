@@ -23,7 +23,7 @@ To make Circle and its methods public:
 - In Go: capitalize circle in `type circle struct` as well as method names
 - In Rust: add `pub` before `struct Circle`
 
-> For each C++ function to export, add `extern "C"` before the function signature
+> For each C++ function to export, add `extern "C"` before the function signature. For Win32, add `extern "C" __declspec(dllexport)` before the function signature.
 
 > For each Go function to export, add `import "C"` (one time only) and then add `//export <function-name>` right above function definition
 
