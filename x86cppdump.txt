@@ -568,7 +568,7 @@ Disassembly of section .text:
     2785:	48 8d 45 d0          	lea    -0x30(%rbp),%rax
     2789:	66 48 0f 6e c2       	movq   %rdx,%xmm0
     278e:	48 89 c7             	mov    %rax,%rdi
-    2791:	e8 fc 0c 00 00       	call   3492 <_ZN6CircleC1Ed>
+    2791:	e8 fc 0c 00 00       	call   3492 <_ZN6CircleC2Ed>
     2796:	f2 0f 10 45 c8       	movsd  -0x38(%rbp),%xmm0
     279b:	f2 0f 2c c0          	cvttsd2si %xmm0,%eax
     279f:	89 45 d8             	mov    %eax,-0x28(%rbp)
@@ -1531,7 +1531,7 @@ Disassembly of section .text:
     3490:	c9                   	leave
     3491:	c3                   	ret
 
-0000000000003492 <_ZN6CircleC1Ed>:
+0000000000003492 <_ZN6CircleC2Ed>:
     3492:	f3 0f 1e fa          	endbr64
     3496:	55                   	push   %rbp
     3497:	48 89 e5             	mov    %rsp,%rbp

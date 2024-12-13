@@ -5,6 +5,12 @@
 #include <iostream>
 #include <string>
 
+#ifndef _WIN64
+#define HIDDEN __attribute__((visibility("hidden")))
+#else
+#define HIDDEN
+#endif
+
 using namespace std;
 
 class Circle {
@@ -14,23 +20,23 @@ private:
 public:
     int x, y;
 
-    Circle(double radius) {
+    HIDDEN Circle(double radius) {
         this->radius = radius;
     }
 
-    double area() {
+    HIDDEN double area() {
         return M_PI * pow(radius, 2);
     }
 
-    double circumference() {
+    HIDDEN double circumference() {
         return 2 * M_PI * radius;
     }
 
-    double diameter() {
+    HIDDEN double diameter() {
         return 2 * radius;
     }
 
-    void change_radius(double new_radius) {
+    HIDDEN void change_radius(double new_radius) {
         radius = new_radius;
     }
 };

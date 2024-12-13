@@ -464,7 +464,7 @@ Disassembly of section .text:
     1e78:	54ffff21 	b.ne	1e5c <_Z5part1v+0x4c>  // b.any
     1e7c:	fd400be0 	ldr	d0, [sp, #16]
     1e80:	910063e0 	add	x0, sp, #0x18
-    1e84:	9400034a 	bl	2bac <_ZN6CircleC1Ed>
+    1e84:	9400034a 	bl	2bac <_ZN6CircleC2Ed>
     1e88:	fd400be0 	ldr	d0, [sp, #16]
     1e8c:	1e780000 	fcvtzs	w0, d0
     1e90:	b90023e0 	str	w0, [sp, #32]
@@ -1353,7 +1353,7 @@ Disassembly of section .text:
     2ba4:	a8c27bfd 	ldp	x29, x30, [sp], #32
     2ba8:	d65f03c0 	ret
 
-0000000000002bac <_ZN6CircleC1Ed>:
+0000000000002bac <_ZN6CircleC2Ed>:
     2bac:	d10043ff 	sub	sp, sp, #0x10
     2bb0:	f90007e0 	str	x0, [sp, #8]
     2bb4:	fd0003e0 	str	d0, [sp]
