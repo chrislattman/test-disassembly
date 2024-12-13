@@ -30,12 +30,16 @@ void fourargfunc(int arg1, int arg2, int arg3, Circle* arg4) {
     printf("Result = %d\n", result);
 }
 
-void part1(void) {
+int part1(void) {
     Circle circle;
+    int c;
 
-    printf("Enter radius: ");
+    printf("Enter a radius: ");
     scanf("%lf", &circle.radius);
-    circle.x = 0;
+    do {
+        c = getchar();
+    } while (c != '\n' && c != EOF);
+    circle.x = (int) circle.radius;
     circle.y = 1;
 
     if (circle.x < 0) {
@@ -52,16 +56,22 @@ void part1(void) {
     printf("New diameter = %f\n", diameter(circle));
 
     fourargfunc(5, 3, 2, &circle);
+    return circle.x;
 }
 
 void part2(void) {
-    const char* str = "Hello world!";
+    char *line = NULL;
+    size_t len;
     const char number[] = "307";
 
-    printf("String length of '%s' = %zu\n", str, strlen(str));
+    printf("Enter a string: ");
+    getline(&line, &len, stdin);
+    line[strlen(line) - 1] = '\0';
+    printf("String length of '%s' = %zu\n", line, strlen(line));
     printf("Value of '%s' = %d\n", number, atoi(number));
 
-    printf("%s\n", strcmp(str, number) != 0 ? "true" : "false");
+    printf("%s\n", strcmp(line, number) != 0 ? "true" : "false");
+    free(line);
 }
 
 void part3(void) {
@@ -83,12 +93,15 @@ void part4(void) {
 
 void part5(void) {
     int x = 5;
+    int counter = 0;
     while (1) {
+        counter += 1;
         x = (x * 5) % 7;
         if (x == 1) {
             break;
         }
     }
+    printf("The order of 5 mod 7 is %d\n", counter);
 }
 
 void part6(int arg) {
@@ -113,14 +126,17 @@ int main(void) {
         stack_buf[i] = (i * 15) % 29;
         heap_buf[i] = (i + 12) % 31;
     }
+    for (int i = 0; i < 10; i++) {
+        printf("stack_buf[%d] = %d, heap_buf[%d] = %d\n", i, stack_buf[i], i, heap_buf[i]);
+    }
     free(heap_buf);
 
-    part1();
+    int res = part1();
     part2();
     part3();
     part4();
     part5();
-    part6(13);
+    part6(res);
 
     return 0;
 }

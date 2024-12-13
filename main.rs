@@ -35,8 +35,8 @@ fn fourargfunc(arg1: i32, arg2: i32, arg3: i32, arg4: &mut Circle) {
     println!("Result = {}", result);
 }
 
-fn part1() {
-    print!("Enter radius: ");
+fn part1() -> i32 {
+    print!("Enter a radius: ");
     io::stdout().flush().unwrap();
     let mut buffer = String::new();
     io::stdin().read_line(&mut buffer).unwrap();
@@ -45,6 +45,7 @@ fn part1() {
         y: 1,
         radius: buffer.trim().parse::<f64>().unwrap(),
     };
+    circle.x = circle.radius as i32;
 
     if circle.x < 0 {
         println!("Your circle has a x-coordinate less than 0");
@@ -65,16 +66,21 @@ fn part1() {
     println!("New diameter = {}", circle.diameter());
 
     fourargfunc(5, 3, 2, &mut circle);
+    return circle.x;
 }
 
 fn part2() {
-    let s = "Hello world!";
+    let mut line = String::new();
     let number = "307";
 
-    println!("String length of '{}' = {}", s, s.len());
+    print!("Enter a string: ");
+    io::stdout().flush().unwrap();
+    io::stdin().lock().read_line(&mut line).unwrap();
+    line = (&line[..line.len() - 1]).to_string();
+    println!("String length of '{}' = {}", line, line.len());
     println!("Value of '{}' = {}", number, number.parse::<i32>().unwrap());
 
-    println!("{}", s != number);
+    println!("{}", line != number);
 }
 
 fn part3() {
@@ -98,12 +104,15 @@ fn part4() {
 
 fn part5() {
     let mut x = 5;
+    let mut counter = 0;
     loop {
+        counter += 1;
         x = (x * 5) % 7;
         if x == 1 {
             break;
         }
     }
+    println!("The order of 5 mod 7 is {}", counter);
 }
 
 fn part6(arg: i32) {
@@ -121,11 +130,14 @@ fn main() {
         stack_buf[i] = (i * 15) % 29;
         heap_buf[i] = (i + 12) % 31;
     }
+    for i in 0..10 {
+        println!("stack_buf[{}] = {}, heap_buf[{}] = {}", i, stack_buf[i], i, heap_buf[i]);
+    }
 
-    part1();
+    let res = part1();
     part2();
     part3();
     part4();
     part5();
-    part6(13);
+    part6(res);
 }

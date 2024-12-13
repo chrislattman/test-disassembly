@@ -36,12 +36,12 @@ func FourArgFunc(arg1 int, arg2 int, arg3 int, arg4 *circle) {
 	fmt.Println("Result =", result)
 }
 
-func Part1() {
+func Part1() int {
 	var circ circle
 
-	fmt.Print("Enter radius: ")
+	fmt.Print("Enter a radius: ")
 	fmt.Scanf("%f", &circ.radius)
-	circ.x = 0
+	circ.x = int(circ.radius)
 	circ.y = 1
 
 	if circ.x < 0 {
@@ -58,21 +58,26 @@ func Part1() {
 	fmt.Printf("New diameter = %v\n", circ.diameter())
 
 	FourArgFunc(5, 3, 2, &circ)
+	return circ.x
 }
 
 func Part2() {
-	str := "Hello world!"
 	number := "307"
 
-	fmt.Printf("String length of '%v' = %v\n", str, len(str))
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter a string: ")
+	line, _ := reader.ReadString('\n')
+	line = line[:len(line)-1]
+	fmt.Printf("String length of '%v' = %v\n", line, len(line))
 	val, _ := strconv.Atoi(number)
 	fmt.Printf("Value of '%v' = %v\n", number, val)
 
-	fmt.Println(str != number)
+	fmt.Println(line != number)
 }
 
 func Part3() {
-	err := exec.Command("date").Run()
+	out, err := exec.Command("date").Output()
+	fmt.Print(string(out))
 	if err == nil {
 		fmt.Println("Result of date command = 0")
 	} else {
@@ -95,12 +100,15 @@ func Part4() {
 
 func Part5() {
 	x := 5
+	counter := 0
     for true {
+		counter += 1
         x = (x * 5) % 7
         if (x == 1) {
             break
         }
     }
+	fmt.Println("The order of 5 mod 7 is", counter)
 }
 
 func Part6(arg int) {
@@ -121,11 +129,14 @@ func main() {
 		stackBuf[i] = (i * 15) % 29
 		heapBuf[i] = (i + 12) % 31
 	}
+	for i := 0; i < 10; i++ {
+		fmt.Printf("stackBuf[%v] = %v, heapBuf[%v] = %v\n", i, stackBuf[i], i, heapBuf[i])
+	}
 
-	Part1()
+	res := Part1()
 	Part2()
 	Part3()
 	Part4()
 	Part5()
-	Part6(13)
+	Part6(res)
 }

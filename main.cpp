@@ -40,13 +40,17 @@ void fourargfunc(int arg1, int arg2, int arg3, Circle* arg4) {
     cout << "Result = " << result << endl;
 }
 
-void part1(void) {
+int part1(void) {
     double radius;
+    int c;
 
-    cout << "Enter radius: ";
+    cout << "Enter a radius: ";
     cin >> radius;
+    do {
+        c = getchar();
+    } while (c != '\n' && c != EOF);
     Circle circle(radius);
-    circle.x = 0;
+    circle.x = (int) radius;
     circle.y = 1;
 
     if (circle.x < 0) {
@@ -63,16 +67,19 @@ void part1(void) {
     cout << "New diameter = " << circle.diameter() << endl;
 
     fourargfunc(5, 3, 2, &circle);
+    return circle.x;
 }
 
 void part2(void) {
-    string str = "Hello world!";
+    string line;
     string number = "307";
 
-    cout << "String length of '" << str << "' = " << str.length() << endl;
+    cout << "Enter a string: ";
+    getline(cin, line);
+    cout << "String length of '" << line << "' = " << line.length() << endl;
     cout << "Value of '" << number << "' = " << stoi(number) << endl;
 
-    cout << boolalpha << (str != number) << endl;
+    cout << boolalpha << (line != number) << endl;
 }
 
 void part3(void) {
@@ -97,12 +104,15 @@ void part4(void) {
 
 void part5(void) {
     int x = 5;
+    int counter = 0;
     while (1) {
+        counter += 1;
         x = (x * 5) % 7;
         if (x == 1) {
             break;
         }
     }
+    cout << "The order of 5 mod 7 is " << counter << endl;
 }
 
 void part6(int arg) {
@@ -127,14 +137,17 @@ int main(void) {
         stack_buf[i] = (i * 15) % 29;
         heap_buf[i] = (i + 12) % 31;
     }
+    for (int i = 0; i < 10; i++) {
+        cout << "stack_buf[" << i << "] = " << stack_buf[i] << ", heap_buf[" << i << "] = " << heap_buf[i] << endl;
+    }
     delete[] heap_buf;
 
-    part1();
+    int res = part1();
     part2();
     part3();
     part4();
     part5();
-    part6(13);
+    part6(res);
 
     return 0;
 }
